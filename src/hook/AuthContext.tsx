@@ -1,11 +1,11 @@
-import { createContext } from "react";
+import { createContext, useContext } from "react";
 import { IAuthUserContext, IAuthorizedUserInfo } from "../interfaces/AuthInterface";
 import type {LoginInfo} from '../interfaces/AuthInterface'
 import react from 'react'
 const AuthContext = createContext<IAuthUserContext | null>(null)
 
 interface AuthContextProviderProps {
-    Children : react.ReactNode
+    children : react.ReactNode
 }
 
 const testAuthenticatedUser : IAuthorizedUserInfo = {
@@ -17,9 +17,10 @@ const testAuthenticatedUser : IAuthorizedUserInfo = {
 
 }
 
-export const AuthContextProvider = ({Children} : AuthContextProviderProps) => {
+export const AuthContextProvider = ({children} : AuthContextProviderProps) => {
     
     const signIn = (authObject: LoginInfo) => {
+    
         return true
     }
     const data : IAuthUserContext = {
@@ -28,7 +29,12 @@ export const AuthContextProvider = ({Children} : AuthContextProviderProps) => {
     }
     return(
         <AuthContext.Provider value={data}>
-           {Children}
+           {children}
         </AuthContext.Provider>
     )
+}
+
+export const useAuth = () => { 
+    const context = useContext(AuthContext)
+    return context
 }
