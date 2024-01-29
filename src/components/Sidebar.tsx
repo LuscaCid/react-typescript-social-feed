@@ -1,23 +1,26 @@
 import { useState } from "react"
 import styles from './sidebar.module.css'
 import { FaPencilAlt } from "react-icons/fa";
+import { useAuth } from "../hook/AuthContext"
 
+ 
 export const Sidebar = () => {
-    const [imgUrl, setImgUrl] = useState('https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=50&w=502&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D')
+    const UserDataRefToAuth = useAuth()
 
+    console.log(UserDataRefToAuth)
 
     return (
         <aside 
         className={styles.sidebar}
         >
            <img 
-           src={imgUrl} 
-           className={styles.cover}
+                src={UserDataRefToAuth?.banner_img_url} 
+                className={styles.cover}
            />
             <div className={styles.profile}>
                 <img 
-                className={styles.profilePhoto}
-                src="https://github.com/luscacid.png" />
+                    className={styles.profilePhoto}
+                    src={UserDataRefToAuth?.profile_img_url} />
                 <strong>
                     Lucas Cid
                 </strong>
@@ -34,5 +37,3 @@ export const Sidebar = () => {
         </aside>
     )
 }
-
-//https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=50&w=502&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D
