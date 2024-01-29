@@ -1,11 +1,15 @@
-export const fakePosts = [
+import { IPost, IAuthorInfo } from "../interfaces/posts-comments";
+
+export const fakePosts : IPost<IAuthorInfo> []= [
   {
+    author : {
+      userImgUrl: "https://github.com/luscacid.png",
+      username: "Lucas Cid",
+      role: "Web Developer"
+    },
     title: "Primeiro post da página",
     description: "Primeiro post da página feito pelo adm",
-    userImgUrl: "https://github.com/luscacid.png",
-    username: "Lucas Cid",
     publishedAt : new Date("2024-01-23 10:00:00"),
-    role: "Web Developer",
     comments: [
       {
         comment_id : Math.round(Math.random() * 5000),
@@ -31,12 +35,14 @@ export const fakePosts = [
     ]
   },
   {
+    author : {
+      userImgUrl: "https://github.com/joao.png",
+      username: "Outro Usuário",
+      role: "Backend Developer"
+    },
     title: "Segundo post da página",
     description: "Segundo post da página com mais informações",
-    userImgUrl: "https://github.com/joao.png",
-    username: "Outro Usuário",
     publishedAt : new Date("2024-01-20 20:00:00"),
-    role: "Backend Developer",
     comments: [
       {
         comment_id : Math.round(Math.random() * 5000),
@@ -55,12 +61,14 @@ export const fakePosts = [
     ]
   },
   {
+    author : {
+      userImgUrl: "https://github.com/pietro.png",
+      username: "Mais um Usuário",
+      role: "Full Stack Developer"
+    },
     title: "Terceiro post da página",
     description: "Terceiro post da página com novas informações",
-    userImgUrl: "https://github.com/pietro.png",
-    username: "Mais um Usuário",
     publishedAt : new Date("2023-12-20 20:00:00"),
-    role: "Full Stack Developer",
     comments: [
       {
         comment_id : Math.round(Math.random() * 5000),
@@ -79,11 +87,13 @@ export const fakePosts = [
     ]
   },
   {
+    author : {
+      userImgUrl: "https://github.com/gustavo.png",
+      username: "Usuário Final",
+      role: "UX Designer"
+    },
     title: "Quarto post da página",
     description: "Quarto post da página com diferentes detalhes",
-    userImgUrl: "https://github.com/gustavo.png",
-    username: "Usuário Final",
-    role: "UX Designer",
     publishedAt : new Date("2024-01-23 13:00:00"),
     comments: [
       {

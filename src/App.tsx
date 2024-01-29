@@ -18,9 +18,9 @@ function App() {
           <main>
             {data.length > 0 ? data.map((post)=> {
               const authorObject : IAuthorInfo = {
-                role : post.role,
-                userImgUrl : post.userImgUrl,
-                username : post.username
+                role : post.author.role,
+                userImgUrl : post.author.userImgUrl,
+                username : post.author.username
               }
               return (
                 <Post
