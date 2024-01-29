@@ -9,7 +9,7 @@ npm run dev
 
 ## training with types and interfaces in react.js 
 
-‘‘‘js
+‘‘‘ js
 export interface IAuthorizedUserInfo {
     user_id : number //that becomes from backend
     name : string
