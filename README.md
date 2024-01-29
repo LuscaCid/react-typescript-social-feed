@@ -2,12 +2,12 @@
 
 ts a very happy moment in my life, learn a lot of things that performing with all theses amazing technologies.
 
-’’’bash
+‘‘‘ bash
 
 npm install
 npm run dev
 
-’’’
+‘‘‘
 
 ## training with types and interfaces in react.js 
 
