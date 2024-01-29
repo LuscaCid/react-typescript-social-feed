@@ -1,4 +1,4 @@
-import react, { createContext, useContext, useEffect, useState } from "react";
+import react, { createContext, useContext } from "react";
 import { fakePosts } from '../database/data'
  
 //fake posts its like an fetching data from database for 
