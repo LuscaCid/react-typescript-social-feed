@@ -1,4 +1,4 @@
-import { Post } from "./Post"
+import { Post } from "./components/Post"
 import { Header } from "./components/header"
 import './global.css'
 import { Sidebar } from "./components/Sidebar"

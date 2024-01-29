@@ -17,15 +17,15 @@
 //eu poderia receber um array de objetos com os comments os perfis das pessoas
 //que comentaram, como nome e o url da imagem de avatar no objeto pra renderizar
 import { IoIosSend } from "react-icons/io";
-import { Comment } from "./components/Comment";
+import { Comment } from "./Comment";
 import {format, formatDistanceToNow} from 'date-fns'
 import { ptBR } from 'date-fns/locale/pt-BR'
 import styles from './post.module.css'
 import { ChangeEvent, useState } from "react";
-import { IComment } from "./interfaces/posts-comments";
-import {IPost} from './interfaces/posts-comments'
+import { IComment } from "../interfaces/posts-comments";
+import {IPost} from '../interfaces/posts-comments'
 import { FormEvent } from "react";
-import { IAuthorInfo } from "./interfaces/posts-comments";
+import { IAuthorInfo } from "../interfaces/posts-comments";
 export const Post = ({author, title, description, comments, publishedAt} : IPost<IAuthorInfo>) => {
     
     const [thisPostComments, setThisPostComments] = useState<IComment[]>(comments)
