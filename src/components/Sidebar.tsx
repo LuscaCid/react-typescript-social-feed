@@ -1,9 +1,8 @@
-import { useState } from "react"
+
 import styles from './sidebar.module.css'
 import { FaPencilAlt } from "react-icons/fa";
 import { useAuth } from "../hook/AuthContext"
 
- 
 export const Sidebar = () => {
     const UserDataRefToAuth = useAuth()
 
