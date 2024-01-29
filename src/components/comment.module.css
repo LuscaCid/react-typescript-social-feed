@@ -1,0 +1,83 @@
+.user {
+  img{
+    border-radius: 50%;
+    object-fit: cover;
+    width: 5rem;
+    height: 5rem;
+  }
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  button {
+    margin-top: -.5rem;
+    background: none;
+    border-radius: .5rem;
+    line-height: 0 ;
+    svg {
+      transition: color 0.2s;
+
+    }
+  }
+  button:hover {
+    svg {
+      color: var(--red-500 );
+
+    }
+  }
+  button:focus{
+    outline: var(--red-500);
+  }
+}
+
+.container{
+  display: flex;
+  gap: 2rem;
+  img { 
+    width: 5rem;
+    height: 5rem;
+    border-radius: .7rem;
+  }
+  >:nth-child(2){
+    width: 100%;
+    
+  }
+  button {
+    background: none;
+    border: none;
+    padding: .6rem 1rem;
+    color: var(--gray-500);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .6rem;
+    cursor: pointer;
+    font-size: 1.4rem;
+  }
+  button:hover {
+    color: var(--green-500);
+  }
+ 
+}
+.commentArea{
+  padding: .9rem 1rem 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  background: var(--gray-700);
+  border-radius: 0 .6rem .6rem .6rem;
+  margin-bottom: 1rem;
+  width: 100%;
+}
+.username {
+  margin-bottom: 2rem;
+}
+.comment{
+  
+  font-size: 1.4rem;
+  color: var(--gray-300);
+}
+.likes::before{
+  content: '\2022';
+  padding: .5rem;
+
+}
