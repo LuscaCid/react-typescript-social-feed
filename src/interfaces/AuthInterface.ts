@@ -10,9 +10,15 @@ export interface IAuthorizedUserInfo {
 
 export type LoginInfo = { username? : string, email? : string, password : string }
 
-export interface IAuthUserContext extends IAuthorizedUserInfo {
-    signIn : ({username, email, password} : LoginInfo) => boolean
+export type SignInResponse = {
+    user? : IAuthorizedUserInfo
+    token? : string
 }
+
+export interface IAuthUserContext extends IAuthorizedUserInfo {
+    signIn : ({username, email, password} : LoginInfo) => SignInResponse
+    signUp : ({username, email, password} : LoginInfo) => boolean
+ }
 
 /**
  * no feedcontext eu posso pegar o id do usuario e buscar posts para 

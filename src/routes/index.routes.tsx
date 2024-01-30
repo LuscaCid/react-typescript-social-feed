@@ -5,6 +5,7 @@ import { useAuth } from '../hook/AuthContext'
 
 export const Routes = () => {
     const user = useAuth()
+    console.log(user, "useAuth")
     return (
         <BrowserRouter>
             {user ? (<AppRoutes/> ): (<AuthRoutes/>)}

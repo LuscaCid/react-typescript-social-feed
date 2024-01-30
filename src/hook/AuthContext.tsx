@@ -2,6 +2,7 @@ import { createContext, useContext } from "react";
 import { IAuthUserContext, IAuthorizedUserInfo } from "../interfaces/AuthInterface";
 import type {LoginInfo} from '../interfaces/AuthInterface'
 import react from 'react'
+import {SignInResponse} from '../interfaces/AuthInterface'
 const AuthContext = createContext<IAuthUserContext | null>(null)
 
 interface AuthContextProviderProps {
@@ -20,11 +21,17 @@ export const AuthContextProvider = ({children} : AuthContextProviderProps) => {
     
     const signIn = (authObject: LoginInfo) => {
         
+        return {
+
+        }
+    }
+    const signUp = () => {
         return true
     }
     const data : IAuthUserContext = {
         ...testAuthenticatedUser, //spread userObject in this data obj
-        signIn
+        signIn,
+        signUp
     }
     return(
         <AuthContext.Provider value={data}>
