@@ -43,7 +43,7 @@ export const Post = ({author, title, description, comments, publishedAt} : IPost
        
         if(!commentText)return 
         else {
-        const commentObject : IComment = {//object generated to appears in frontend instantly that came from useAuth
+        const commentObject : IComment = {//object generated to appears in frontend instantly that cames from useAuth ==> context api provides the user authenticated in application
             comment_id : Math.round(Math.random() * 10000),
             username : "usuario q está logado",
             imgUrl : "https://github.com/luscacid.png",
