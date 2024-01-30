@@ -11,7 +11,7 @@ export const Routes = () => {
     //if user is authenticated, return appRoutes
     return (
         <BrowserRouter>
-            {user ? (<AppRoutes/> ): (<AuthRoutes/>)}
+            {undefined ? (<AppRoutes/> ): (<AuthRoutes/>)}
         </BrowserRouter> 
     )
 }

@@ -13,28 +13,28 @@ function App() {
   
   return (
     <>
-      <Header/>
+      
         <div className={styles.wrapper}>
           <Sidebar />
           <main>
             {
-            data.length > 0 ? data.map((post)=> {
-              const authorObject : IAuthorInfo = {
-                role : post.author.role,
-                userImgUrl : post.author.userImgUrl,
-                username : post.author.username
-              }
-              return (
-                <Post
-                  key={String(post.description)} 
-                  title={post.title}
-                  author={authorObject}
-                  description={post.description}  
-                  comments={post.comments}
-                  publishedAt = {post.publishedAt}
-                /> 
-              )
-            }) : (<div className={styles.empty}>Siga alguém para ver posts</div>)
+              data.length > 0 ? data.map((post)=> {
+                const authorObject : IAuthorInfo = {
+                  role : post.author.role,
+                  userImgUrl : post.author.userImgUrl,
+                  username : post.author.username
+                }
+                return (
+                  <Post
+                    key={String(post.description)} 
+                    title={post.title}
+                    author={authorObject}
+                    description={post.description}  
+                    comments={post.comments}
+                    publishedAt = {post.publishedAt}
+                  /> 
+                )
+              }) : (<div className={styles.empty}>Siga alguém para ver posts</div>)
             }
           </main>
       </div>
