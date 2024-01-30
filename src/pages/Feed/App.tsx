@@ -1,11 +1,11 @@
-import { Post } from "../../comments/Post"
-import { Header } from "../../comments/Header"
+import { Post } from "../../components/Post"
+import { Header } from "../../components/header"
 
 import { Sidebar } from "../../components/Sidebar"
 import styles from './app.module.css'
 import {useAppContext} from '../../hook/FeedContext' 
-import { IAuthorInfo } from "../../interfaces/post-comments"
-import { FakePosts } from "../../database/data"
+import { IAuthorInfo } from "../../interfaces/posts-comments"
+import type { FakePosts } from "../../hook/FeedContext"
 
 function App() {
   const data : FakePosts= useAppContext()
