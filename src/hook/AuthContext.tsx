@@ -22,7 +22,7 @@ const user : IAuthorizedUserInfo = {//it becomes from signIn
 export const AuthContextProvider = ({children} : AuthContextProviderProps) => {
     
     const signIn = (authObject: LoginInfo) : SignInResponse=> {
-        
+        console.log(authObject)
         return {
 
         }
@@ -32,6 +32,7 @@ export const AuthContextProvider = ({children} : AuthContextProviderProps) => {
     }
 
     const updateProfileImage = (file : File) => {
+        console.log(file)
         return true
     }
 

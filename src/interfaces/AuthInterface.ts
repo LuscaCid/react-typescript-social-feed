@@ -15,14 +15,6 @@ export type SignInResponse = {
     token? : string
 }
 
-interface InputFile {
-    name: string;
-    size: number;
-    type: string;
-    lastModified: number;
-    // Adicione outros campos relevantes conforme necessário
-  }
-  
 
 export interface IAuthUserContext   {
     signIn : ({username, email, password} : LoginInfo) => SignInResponse
