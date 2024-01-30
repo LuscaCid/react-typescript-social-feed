@@ -1,4 +1,4 @@
-import { ImgHTMLAttributes } from "react"
+//import { ImgHTMLAttributes } from "react"
 
 export interface IAuthorizedUserInfo {
     user_id : number //that becomes from backend

@@ -4,7 +4,7 @@ import type {LoginInfo} from '../interfaces/AuthInterface'
 import react from 'react'
 import {SignInResponse} from '../interfaces/AuthInterface'
 
-const AuthContext = createContext<IAuthUserContext | undefined>({})
+const AuthContext = createContext<IAuthUserContext | undefined>(undefined)
 
 interface AuthContextProviderProps {
     children : react.ReactNode
