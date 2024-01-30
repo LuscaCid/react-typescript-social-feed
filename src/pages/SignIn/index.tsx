@@ -3,7 +3,7 @@ import styles from './SignUp.module.css'
 
 export const SignIn = () => {
     return (
-        <div>
+        <div className={styles.signin}>
             hello Login Page
         </div>
     )

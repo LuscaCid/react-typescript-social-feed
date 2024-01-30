@@ -17,7 +17,8 @@ function App() {
         <div className={styles.wrapper}>
           <Sidebar />
           <main>
-            {data.length > 0 ? data.map((post)=> {
+            {
+            data.length > 0 ? data.map((post)=> {
               const authorObject : IAuthorInfo = {
                 role : post.author.role,
                 userImgUrl : post.author.userImgUrl,
@@ -33,7 +34,8 @@ function App() {
                   publishedAt = {post.publishedAt}
                 /> 
               )
-            }) : (<div className={styles.empty}>Siga alguém para ver posts</div>)}
+            }) : (<div className={styles.empty}>Siga alguém para ver posts</div>)
+            }
           </main>
       </div>
     
