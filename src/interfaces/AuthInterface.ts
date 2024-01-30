@@ -15,9 +15,20 @@ export type SignInResponse = {
     token? : string
 }
 
-export interface IAuthUserContext extends IAuthorizedUserInfo {
+interface InputFile {
+    name: string;
+    size: number;
+    type: string;
+    lastModified: number;
+    // Adicione outros campos relevantes conforme necessário
+  }
+  
+
+export interface IAuthUserContext   {
     signIn : ({username, email, password} : LoginInfo) => SignInResponse
     signUp : ({username, email, password} : LoginInfo) => boolean
+    updateProfileImage : (file : File) => boolean
+    user : IAuthorizedUserInfo
  }
 
 /**

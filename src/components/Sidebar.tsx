@@ -2,28 +2,28 @@
 import styles from './sidebar.module.css'
 import { FaPencilAlt } from "react-icons/fa";
 import { useAuth } from "../hook/AuthContext"
+import { IAuthUserContext } from '../interfaces/AuthInterface';
 
 export const Sidebar = () => {
-    const UserDataRefToAuth = useAuth()
-
-    console.log(UserDataRefToAuth)
+    const UserDataRefToAuth : IAuthUserContext | undefined = useAuth()
+    const user = UserDataRefToAuth!.user
 
     return (
         <aside 
         className={styles.sidebar}
         >
            <img 
-                src={UserDataRefToAuth?.banner_img_url} 
+                src={user?.banner_img_url} 
                 className={styles.cover}
            />
             <div className={styles.profile}>
                 <img 
                     className={styles.profilePhoto}
-                    src={UserDataRefToAuth?.profile_img_url} />
+                    src={user?.profile_img_url} />
                 <strong>
                     Lucas Cid
                 </strong>
-                <span>Fullstack developer</span>
+                <span>{user.role}</span>
             </div>
             <footer
             className={styles.footer}
