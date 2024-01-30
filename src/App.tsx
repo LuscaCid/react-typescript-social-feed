@@ -1,4 +1,4 @@
-import { Post } from "./Post"
+import { Post } from "./components/Post"
 import { Header } from "./components/header"
 import './global.css'
 import { Sidebar } from "./components/Sidebar"
@@ -6,10 +6,11 @@ import styles from './app.module.css'
 import {useAppContext} from './hook/FeedContext' 
 import { IAuthorInfo } from "./interfaces/posts-comments"
 import { FakePosts } from "./hook/FeedContext"
+
 function App() {
   const data : FakePosts= useAppContext()
-  //my data is posts that main user follows
-
+  //my data is posts that main user 
+  
   return (
     <>
       <Header/>
@@ -18,9 +19,9 @@ function App() {
           <main>
             {data.length > 0 ? data.map((post)=> {
               const authorObject : IAuthorInfo = {
-                role : post.role,
-                userImgUrl : post.userImgUrl,
-                username : post.username
+                role : post.author.role,
+                userImgUrl : post.author.userImgUrl,
+                username : post.author.username
               }
               return (
                 <Post

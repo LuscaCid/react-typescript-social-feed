@@ -2,12 +2,14 @@ import React from 'react'
 import ReactDOM from 'react-dom/client'
 import App from './App.jsx'
 import {FeedContext} from './hook/FeedContext.tsx'
-
+import { AuthContextProvider } from './hook/AuthContext.tsx'
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <FeedContext>
-      < App />
-
-    </FeedContext>
+    <AuthContextProvider>
+      <FeedContext>
+        < App />
+      </FeedContext>
+    </AuthContextProvider>
+    
   </React.StrictMode>,
 )

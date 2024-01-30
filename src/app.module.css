@@ -12,7 +12,7 @@
 }
 @media (max-width:40em) {
     :root {
-        font-size: 54%;
+        font-size: 57.5%;
     }
     .wrapper{
         grid-template-columns: 1fr;
