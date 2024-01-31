@@ -1,6 +1,6 @@
 
 import styles from './SignUp.module.css'
-import react, { ChangeEvent, FormEvent, useState } from 'react'
+import react, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import { InputAndOrLabel } from '../../components/Input'
 export const SignIn = () => {
     const [emailOrPhoneValue, setEmailOrPhoneValue] = useState<string>('')
@@ -12,12 +12,14 @@ export const SignIn = () => {
         } else {
             setPassword(e.target.value)
         }
+        
     }
     
     const handleLogin = (e : FormEvent<HTMLButtonElement>) => {
         e.preventDefault()
         
     }
+    
     return (
         <react.Fragment>
             <main className={styles.signin}>
@@ -29,7 +31,7 @@ export const SignIn = () => {
                     <InputAndOrLabel 
                         labelTitle='Email ou username'
                         variantInputFormat='primary'
-                         
+                        onChangeFunction={handleChangeInputs} 
                         input={
                             {
                                 id : "email", 
@@ -39,6 +41,7 @@ export const SignIn = () => {
                             }}
                     />
                      <InputAndOrLabel 
+                        onChangeFunction={handleChangeInputs}
                         labelTitle='Email ou username'
                         variantInputFormat='primary'
                         input={
