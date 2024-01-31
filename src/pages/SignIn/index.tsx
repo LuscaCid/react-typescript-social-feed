@@ -1,7 +1,7 @@
 
 import styles from './SignUp.module.css'
 import react, { ChangeEvent, FormEvent, useState } from 'react'
-
+import { InputAndOrLabel } from '../../components/Input'
 export const SignIn = () => {
     const [emailOrPhoneValue, setEmailOrPhoneValue] = useState<string>('')
     const [password, setPassword] = useState<string>('')
@@ -26,18 +26,29 @@ export const SignIn = () => {
                     <p>Uma rede social minimalista para você que procura um lugar calmo e dev.</p>
                 </aside>
                 <form className={styles.login}>
-                    <input 
-                        name='emailorphone'
-                        onChange={handleChangeInputs}
-                        value={emailOrPhoneValue}
-                        type="text"
-                     />
-                     <input 
-                        name='password'
-                        onChange={handleChangeInputs}
-                        value={password}
-                        type="password"
-                     />
+                    <InputAndOrLabel 
+                        labelTitle='Email ou username'
+                        variantInputFormat='primary'
+                         
+                        input={
+                            {
+                                id : "email", 
+                                placeholder : "email or phone number",
+                                variantTypeFormat : 'primary',
+                                type : 'text' 
+                            }}
+                    />
+                     <InputAndOrLabel 
+                        labelTitle='Email ou username'
+                        variantInputFormat='primary'
+                        input={
+                            {
+                                id : "password", 
+                                placeholder : "password",
+                                variantTypeFormat : 'primary',
+                                type : 'password' 
+                            }}
+                        />
                     <button 
                     onClick={handleLogin}
                     type='submit'>

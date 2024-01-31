@@ -8,7 +8,11 @@ export interface IAuthorizedUserInfo {
     role : string
 }
 
-export type LoginInfo = { username? : string, email? : string, password : string }
+export type LoginInfo = { 
+    username? : string, 
+    email? : string, 
+    password : string 
+}
 
 export type SignInResponse = {
     user? : IAuthorizedUserInfo

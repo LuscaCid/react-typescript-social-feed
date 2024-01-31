@@ -27,7 +27,8 @@ export const AuthContextProvider = ({children} : AuthContextProviderProps) => {
 
         }
     }
-    const signUp = () => {
+    const signUp = ({password,email,username} : LoginInfo) => {
+        console.log(password,email,username)
         return true
     }
 
