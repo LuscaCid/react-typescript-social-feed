@@ -1,8 +1,0 @@
-.signin{
-    display: flex;
-    gap: 2rem;
-    flex-direction : column;
-    width : 80rem;
-    height: 50rem;
-    margin: auto;
-}
