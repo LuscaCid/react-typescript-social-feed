@@ -4,17 +4,11 @@ import  { ChangeEvent, useState } from 'react'
 import { Input } from '../../components/Input'
 import { useForm } from 'react-hook-form'
 import * as zod from 'zod'
-import { NavLink } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import {ButtonSignInSignUpPages} from './SignInContainer'
 import { conn } from '../../service/api'
 import { HiOutlineMail } from "react-icons/hi";
 import {FaLock} from 'react-icons/fa'
-interface CreateSessionFormProps {
-    email : string
-    passworwd : string
-    handleLogin : (data : DataFromSubmit) => void
-    data : DataFromSubmit
-}
 
 interface DataFromSubmit {
     emailOrUsername : string
@@ -27,17 +21,20 @@ const zodModelDataForm = zod.object({
     .string()
     .min(5)
 })
+
+
 type NewSessionCreateData = zod.infer<typeof zodModelDataForm>
 
 export const SignIn = () => {
-
+    
     const [emailOrPhoneValue, setEmailOrPhoneValue] = useState<string>('')
     const [password, setPassword] = useState<string>('')
-
-    const {register, watch, handleSubmit} = useForm<NewSessionCreateData>({
+    
+    const {register, handleSubmit} = useForm<NewSessionCreateData>({
         defaultValues : {emailOrUsername : "", password : ""}
     })
-
+    
+    const navigate= useNavigate()
     const handleChangeInputs = (e : ChangeEvent<HTMLInputElement>) => {
         if(e.target.name == "emailorphone"){
             setEmailOrPhoneValue(e.target.value)
@@ -49,8 +46,8 @@ export const SignIn = () => {
         
     }
     
-    const handleLogin = (data: NewSessionCreateData) : void => {
-        
+    const handleLogin = async (data: NewSessionCreateData) : Propmise<void> => {
+        await conn.post('/')
     }
     
     return (
@@ -65,26 +62,32 @@ export const SignIn = () => {
                             icon={HiOutlineMail}
                             onChangeFunction={handleChangeInputs} 
                             id="email"
-                            name = "email"
                             placeholder = "Email ou Usuário"
                             variantTypeFormat = "primary"
-                            type = "text" 
+                            type = "text"
+                            {...register('emailOrUsername')} 
                         />
                         <Input 
                             icon={FaLock}
                             onChangeFunction={handleChangeInputs}
                             id="password"
-                            name = "password"
                             placeholder = "password"
                             variantTypeFormat = "primary"
                             type = "password" 
+                            {...register('password')}
                             />
-                        <ButtonSignInSignUpPages type= "submit">
-                            SignIn
-                        </ButtonSignInSignUpPages>
+                        
+                            <ButtonSignInSignUpPages type= "submit">
+                                SignIn
+                            </ButtonSignInSignUpPages>
+                        
                     </form>
                     <span>Ou</span>
-                    <ButtonSignInSignUpPages>
+                    
+                    <ButtonSignInSignUpPages
+                    onClick = {() => {
+                        navigate('/register')
+                    }}>
                         SignUp
                     </ButtonSignInSignUpPages>
                     

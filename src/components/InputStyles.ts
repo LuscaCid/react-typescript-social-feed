@@ -7,7 +7,7 @@ export const InputContainer = styled.input<OnlyInputProperties>`
     border: 1px solid var(--green-500); 
     padding: .7rem 4rem;
     border-radius: .4rem;
-
+    color: var(--gray-100);
   
 `
 
