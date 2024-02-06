@@ -6,14 +6,11 @@
  *  title : string
  *  setState : React.dispatch<setStateAction<'o nome do tipo da variavel usestate'>>
  * }
- * 
-*/
 /**
  * import {AppContext} from 'path-to-app-context.jsx'
  * const userData = useContext(AppContext)
  * output ==> url user info, name, posts
  */
-
 //eu poderia receber um array de objetos com os comments os perfis das pessoas
 //que comentaram, como nome e o url da imagem de avatar no objeto pra renderizar
 import { IoIosSend } from "react-icons/io";

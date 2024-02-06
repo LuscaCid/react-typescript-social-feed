@@ -5,7 +5,10 @@ import { Input } from '../../components/Input'
 import { useForm } from 'react-hook-form'
 import * as zod from 'zod'
 import { NavLink } from 'react-router-dom'
-import {ButtonToRegister} from './SignInContainer'
+import {ButtonSignInSignUpPages} from './SignInContainer'
+import { conn } from '../../service/api'
+import { HiOutlineMail } from "react-icons/hi";
+import {FaLock} from 'react-icons/fa'
 interface CreateSessionFormProps {
     email : string
     passworwd : string
@@ -18,19 +21,22 @@ interface DataFromSubmit {
     password :string
 }
 
-const newSessionCreateData = zod.object({
+const zodModelDataForm = zod.object({
     emailOrUsername : zod.string(),
-    password :  zod.string()
+    password :  zod
+    .string()
+    .min(5)
 })
-type NewSessionCreateData = zod.infer<typeof newSessionCreateData>
+type NewSessionCreateData = zod.infer<typeof zodModelDataForm>
 
 export const SignIn = () => {
 
-    
     const [emailOrPhoneValue, setEmailOrPhoneValue] = useState<string>('')
     const [password, setPassword] = useState<string>('')
 
-    const {register, watch, handleSubmit} = useForm<NewSessionCreateData>()
+    const {register, watch, handleSubmit} = useForm<NewSessionCreateData>({
+        defaultValues : {emailOrUsername : "", password : ""}
+    })
 
     const handleChangeInputs = (e : ChangeEvent<HTMLInputElement>) => {
         if(e.target.name == "emailorphone"){
@@ -45,13 +51,10 @@ export const SignIn = () => {
     
     const handleLogin = (data: NewSessionCreateData) : void => {
         
-        
     }
     
     return (
         <SignInContainer>
-            
-            
                 <aside>
                     <h1>SocialFeed</h1>
                     <p>Uma rede social minimalista para você que procura um lugar calmo e dev.</p>
@@ -59,7 +62,7 @@ export const SignIn = () => {
                 <SignInAndSignUpSessions>
                     <form onSubmit={handleSubmit(handleLogin)}>
                         <Input 
-                        
+                            icon={HiOutlineMail}
                             onChangeFunction={handleChangeInputs} 
                             id="email"
                             name = "email"
@@ -68,6 +71,7 @@ export const SignIn = () => {
                             type = "text" 
                         />
                         <Input 
+                            icon={FaLock}
                             onChangeFunction={handleChangeInputs}
                             id="password"
                             name = "password"
@@ -75,14 +79,14 @@ export const SignIn = () => {
                             variantTypeFormat = "primary"
                             type = "password" 
                             />
-                        <button type='submit'>
-                            Entrar
-                        </button>
+                        <ButtonSignInSignUpPages type= "submit">
+                            SignIn
+                        </ButtonSignInSignUpPages>
                     </form>
                     <span>Ou</span>
-                    <ButtonToRegister>
-                        Registrar
-                    </ButtonToRegister>
+                    <ButtonSignInSignUpPages>
+                        SignUp
+                    </ButtonSignInSignUpPages>
                     
                 </SignInAndSignUpSessions>
                 

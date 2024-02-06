@@ -7,7 +7,8 @@ export type LabelContainerType = {
     hasBorderBottom? : boolean
 }
 
-export interface OnlyInputProperties { 
+export interface OnlyInputProperties {
+    icon? : any 
     name : string
     placeholder : string
     type : 'text' | 'password' | 'email' | "file"
