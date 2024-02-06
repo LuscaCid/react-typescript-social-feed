@@ -1,16 +1,20 @@
 
 import styles from './SignUp.module.css'
-import react, { ChangeEvent, FormEvent, useEffect, useState } from 'react'
+import react, { ChangeEvent, FormEvent, useState } from 'react'
 import { InputAndOrLabel } from '../../components/Input'
+
 export const SignIn = () => {
+
     const [emailOrPhoneValue, setEmailOrPhoneValue] = useState<string>('')
     const [password, setPassword] = useState<string>('')
 
     const handleChangeInputs = (e : ChangeEvent<HTMLInputElement>) => {
         if(e.target.name == "emailorphone"){
             setEmailOrPhoneValue(e.target.value)
+            console.log(emailOrPhoneValue, "valor do emailk")
         } else {
             setPassword(e.target.value)
+            console.log('valor do pass', password)
         }
         
     }
@@ -22,6 +26,7 @@ export const SignIn = () => {
     
     return (
         <react.Fragment>
+            
             <main className={styles.signin}>
                 <aside>
                     <h1>SocialFeed</h1>
@@ -30,26 +35,27 @@ export const SignIn = () => {
                 <form className={styles.login}>
                     <InputAndOrLabel 
                         labelTitle='Email ou username'
-                        variantInputFormat='primary'
+                        
                         onChangeFunction={handleChangeInputs} 
-                        input={
+                        inputProps={
                             {
                                 id : "email", 
                                 placeholder : "email or phone number",
-                                variantTypeFormat : 'primary',
-                                type : 'text' 
+                                variantTypeFormat : 'PRIMARY',
+                                type : 'text' ,
+                                name : "emailorphone"
                             }}
                     />
                      <InputAndOrLabel 
                         onChangeFunction={handleChangeInputs}
                         labelTitle='Email ou username'
-                        variantInputFormat='primary'
-                        input={
+                        inputProps={
                             {
                                 id : "password", 
                                 placeholder : "password",
-                                variantTypeFormat : 'primary',
-                                type : 'password' 
+                                variantTypeFormat : 'PRIMARY',
+                                type : 'password' ,
+                                name : "password"
                             }}
                         />
                     <button 

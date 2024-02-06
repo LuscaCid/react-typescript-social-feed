@@ -1,31 +1,16 @@
-import { Container, LabelContainer, InputContainer } from "./InputStyles"
-import { OnlyInputProperties, variantType } from "../@types/Input-Label-ContainerTypes"
-import { ChangeEvent } from "react"
+import { Container, InputContainer } from "./InputStyles"
+import { OnlyInputProperties  } from "../@types/Input-Label-ContainerTypes"
 
-
-interface props {
-    labelTitle : string
-    isLabel? : boolean
-    input : OnlyInputProperties
-    variantInputFormat : variantType
-    onChangeFunction : (e : ChangeEvent<HTMLInputElement>) => void
-    
-
-}
-export const InputAndOrLabel = (props : props) => {
+export const Input = ({ id,name, placeholder,type,variantTypeFormat, onChangeFunction  } : OnlyInputProperties) => {
     return (
         <Container>
-            {props.isLabel && (
-                <LabelContainer>
-                    {props.labelTitle}
-                </LabelContainer>
-            )}
             <InputContainer 
-                onChange={props.onChangeFunction}
-                variantTypeFormat = {props.variantInputFormat}
-                placeholder={props.input.placeholder}
-                type={props.input.type}
-                id={props.input.id}
+                onChangeFunction={onChangeFunction}
+                variantTypeFormat={variantTypeFormat}
+                placeholder={placeholder}
+                type={type}
+                id={id}
+                name = {name}
             />
         </Container>
         

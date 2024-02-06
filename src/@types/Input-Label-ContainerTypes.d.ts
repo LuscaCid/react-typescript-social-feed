@@ -1,3 +1,5 @@
+import { ChangeEvent } from "react"
+
 export type variantType = 'primary' | 'pill'
 
 export type LabelContainerType = {
@@ -6,8 +8,10 @@ export type LabelContainerType = {
 }
 
 export interface OnlyInputProperties { 
+    name : string
     placeholder : string
     type : 'text' | 'password' | 'email' | "file"
     id : string
-    variantTypeFormat : variantType 
+    variantTypeFormat : variantType
+    onChangeFunction : (e : ChangeEvent) => void 
 }
