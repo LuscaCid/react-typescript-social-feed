@@ -1,4 +1,30 @@
-import styles from './SignUp.module.css'
+
+import {SignInAndSignUpSessions, SignInContainer} from '../SignIn/SignInContainer'
+import  { ChangeEvent, useState } from 'react'
+import { Input } from '../../components/Input'
+import { useForm } from 'react-hook-form'
+import * as zod from 'zod'
+import { useNavigate } from 'react-router-dom'
+import {ButtonSignInSignUpPages} from '../SignIn/SignInContainer'
+import { conn } from '../../service/api'
+import { HiOutlineMail } from "react-icons/hi";
+import {FaLock} from 'react-icons/fa'
+
+interface DataFromSubmit {
+    emailOrUsername : string
+    password :string
+}
+
+const zodModelDataForm = zod.object({
+    emailOrUsername : zod.string(),
+    password :  zod
+    .string()
+    .min(5)
+})
+
+
+type NewSessionCreateData = zod.infer<typeof zodModelDataForm>
+
 import {Container} from ''
 export const SignUp = () => {
     
@@ -29,7 +55,7 @@ export const SignUp = () => {
         <SignInContainer>
                 <aside>
                     <h1>SocialFeed</h1>
-                    <p>Uma rede social minimalista para você que procura um lugar calmo e dev.</p>
+                    <p>Uma rede social minimalista para você que procura um lugar clean, rapido, performático e divertido, para todas as idades, dev ou nao!.</p>
                 </aside>
                 <SignInAndSignUpSessions>
                     <form onSubmit={handleSubmit(handleLogin)}>

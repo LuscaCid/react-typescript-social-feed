@@ -54,7 +54,7 @@ export const SignIn = () => {
         <SignInContainer>
                 <aside>
                     <h1>SocialFeed</h1>
-                    <p>Uma rede social minimalista para você que procura um lugar calmo e dev.</p>
+                    <p>Uma rede social minimalista para você que procura um lugar clean, rapido, performático e divertido, para todas as idades, dev ou nao!.</p>
                 </aside>
                 <SignInAndSignUpSessions>
                     <form onSubmit={handleSubmit(handleLogin)}>

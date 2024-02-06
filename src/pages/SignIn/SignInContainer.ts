@@ -3,7 +3,7 @@ import styled from 'styled-components'
 export const SignInContainer = styled.div`
     align-items: center;
     border-radius: .4rem;
-    padding : 4rem 2rem;
+    padding : 5rem 2rem;
     background : var(--gray-700);
     display: flex;
     gap: 2rem;
@@ -14,16 +14,24 @@ export const SignInContainer = styled.div`
     margin: 12rem auto;
     justify-content: space-between;
     aside {
+        width:100% ;
         h1{
-            font-size: 3rem;
+            width: 100% ;
+            font-size: 3.5rem;
         }
         &:nth-child(2){
-            font-size: 2rem;
+            width: 100%;
+            font-size: 2.3rem;
         }
-        width: 40%;
+        width: 50%;
         display: flex;
         flex-direction: column;
         gap: 2rem; 
+        @media(max-width:45rem){
+            
+                width:100%;
+            
+        }
     }
     @media(max-width:45rem){
         display:flex;
@@ -74,5 +82,6 @@ export const ButtonSignInSignUpPages = styled.button`
         background: var(--green-500);
         color: var(--gray-100);
     }
+    font-weight: bold;
 
 `
