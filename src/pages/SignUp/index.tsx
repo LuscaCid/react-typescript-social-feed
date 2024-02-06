@@ -10,20 +10,19 @@ import { conn } from '../../service/api'
 import { HiOutlineMail } from "react-icons/hi";
 import {FaLock} from 'react-icons/fa'
 
-interface DataFromSubmit {
-    emailOrUsername : string
-    password :string
-}
 
-const zodModelDataForm = zod.object({
-    emailOrUsername : zod.string(),
-    password :  zod
+const zodModelDataFormRegister = zod.object({
+    emailRegister : zod.string().min(1),
+    passwordRegister :  zod
     .string()
-    .min(5)
+    .min(5),
+    
+    username : zod.string().min(1),
+
 })
 
 
-type NewSessionCreateData = zod.infer<typeof zodModelDataForm>
+type NewSessionCreateDataRegister = zod.infer<typeof zodModelDataFormRegister>
 
 import {Container} from ''
 export const SignUp = () => {
@@ -31,8 +30,12 @@ export const SignUp = () => {
     const [emailOrPhoneValue, setEmailOrPhoneValue] = useState<string>('')
     const [password, setPassword] = useState<string>('')
     
-    const {register, handleSubmit} = useForm<NewSessionCreateData>({
-        defaultValues : {emailOrUsername : "", password : ""}
+    const {register, handleSubmit, watch} = useForm<NewSessionCreateDataRegister>({
+        defaultValues : {
+            emailRegister : "", 
+            passwordRegister : "",
+            username : ""
+        }
     })
     
     const navigate= useNavigate()
@@ -64,7 +67,7 @@ export const SignUp = () => {
                             onChangeFunction={handleChangeInputs} 
                             id="email"
                             placeholder = "Email ou Usuário"
-                            variantTypeFormat = "primary"
+                            varianttypeformat = "primary"
                             type = "text"
                             {...register('emailOrUsername')} 
                         />
@@ -73,7 +76,7 @@ export const SignUp = () => {
                             onChangeFunction={handleChangeInputs}
                             id="password"
                             placeholder = "password"
-                            variantTypeFormat = "primary"
+                            varianttypeformat = "primary"
                             type = "password" 
                             {...register('password')}
                             />

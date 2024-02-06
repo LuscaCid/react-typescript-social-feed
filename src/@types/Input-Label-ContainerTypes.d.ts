@@ -13,6 +13,6 @@ export interface OnlyInputProperties {
     placeholder : string
     type : 'text' | 'password' | 'email' | "file"
     id : string
-    variantTypeFormat : variantType
+    varianttypeformat : variantType
     onChangeFunction? : (e : ChangeEvent<HTMLInputElement>) => void 
 }
