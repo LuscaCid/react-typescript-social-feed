@@ -11,7 +11,7 @@ export const SignInContainer = styled.div`
     flex-direction : row;
     width : min(74rem, 90%);
     align-items: flex-start;
-    margin: 12rem auto;
+    margin: 5rem auto;
     justify-content: space-between;
     aside {
         width:100% ;
@@ -28,8 +28,8 @@ export const SignInContainer = styled.div`
         flex-direction: column;
         gap: 2rem; 
         @media(max-width:45rem){
-            
-                width:100%;
+            margin: 3 auto  ;
+            width:100%;
             
         }
     }
