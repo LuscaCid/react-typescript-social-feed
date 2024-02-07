@@ -1,53 +1,47 @@
 
 import {SignInAndSignUpSessions, SignInContainer} from './SignInContainer'
-import  { ChangeEvent, useState } from 'react'
-import { Input } from '../../components/Input'
-import { useForm } from 'react-hook-form'
-import {zodResolver} from '@hookform/resolvers/zod'
-import * as zod from 'zod'
-import { useNavigate } from 'react-router-dom'
+import { InputContainer, Container } from '../../components/InputStyles'
 import {ButtonSignInSignUpPages} from './SignInContainer'
-//import { conn } from '../../service/api'
-import { HiOutlineMail } from "react-icons/hi";
-import {FaLock} from 'react-icons/fa'
+import {zodResolver} from '@hookform/resolvers/zod'
 import { PiMoonStarsThin } from 'react-icons/pi'
-
+import { HiOutlineMail } from "react-icons/hi";
+import { useNavigate } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
+import {FaLock} from 'react-icons/fa'
+import * as zod from 'zod'
+import { useAuth } from '../../hook/AuthContext'
+import { IAuthUserContext } from '../../interfaces/AuthInterface'
+//import { conn } from '../../service/api'
 
 const zodModelDataForm = zod.object({
     emailOrUsername : zod.string(),
-    password :  zod
-    .string()
-    .min(5)
+    password :  zod.string(),
+    testInput : zod.string().min(1)
 })
-
 
 type NewSessionCreateData = zod.infer<typeof zodModelDataForm>
 
 export const SignIn = () => {
-    
-    const [emailOrPhoneValue, setEmailOrPhoneValue] = useState<string>('')
-    const [password, setPassword] = useState<string>('')
-    
-    const {register, handleSubmit} = useForm<NewSessionCreateData>({
+
+    const {signIn, user} : IAuthUserContext = useAuth()
+
+    const {register, handleSubmit, reset, watch} = useForm<NewSessionCreateData>({
         resolver : zodResolver(zodModelDataForm),
         defaultValues : {emailOrUsername : "", password : ""}
     })
     
     const navigate= useNavigate()
-    const handleChangeInputs = (e : ChangeEvent<HTMLInputElement>) => {
-        if(e.target.name == "emailorphone"){
-            setEmailOrPhoneValue(e.target.value)
-            console.log(emailOrPhoneValue, "valor do emailk")
-        } else {
-            setPassword(e.target.value)
-            console.log('valor do pass', password)
-        }
-    }
     
-    const handleLogin = async (data: NewSessionCreateData) : Promise<void> => {
+    const handleSignIn = async (data: NewSessionCreateData) : Promise<void> => {
         console.log(data) //only for tests
+        signIn(data)
+        reset()
     }
     
+    const task = watch('emailOrUsername')
+
+    const isSubmitable = !task
+    console.log(task)
     return (
         <SignInContainer>
                 <aside>
@@ -56,30 +50,33 @@ export const SignIn = () => {
                     <PiMoonStarsThin size={120}/>
                 </aside>
                 <SignInAndSignUpSessions>
-                    <form onSubmit={handleSubmit(handleLogin)}>
-                        <Input 
-                            icon={HiOutlineMail}
-                            onchange={handleChangeInputs} 
-                            id="email"
-                            placeholder = "Email ou Usuário"
-                            varianttypeformat = "primary"
-                            type = "text"
-                            {...register('emailOrUsername')} 
-                        />
-                        <Input 
-                            icon={FaLock}
-                            onchange={handleChangeInputs}
-                            id="password"
-                            placeholder = "password"
-                            varianttypeformat='primary'
-                            type = "password" 
-                            {...register('password')}
+                    <form onSubmit={handleSubmit(handleSignIn)}>
+                        <Container>
+                            <HiOutlineMail size={15}/>
+                            <InputContainer 
+                                id="email"
+                                placeholder = "Email ou Usuário"
+                                varianttypeformat = "primary"
+                                type = "text"
+                                {...register('emailOrUsername')} 
                             />
+                        </Container>
+                        <Container>
+                            <FaLock size={15}/>
+                            <InputContainer     
+                                id="password"
+                                placeholder = "password"
+                                varianttypeformat='primary'
+                                type = "password" 
+                                {...register('password')}
+                            />
+                        </Container>
                         
-                            <ButtonSignInSignUpPages>
-                                SignIn
-                            </ButtonSignInSignUpPages>
-                        
+                        <ButtonSignInSignUpPages 
+                            disabled = {!!isSubmitable }
+                            type='submit'>
+                            SignIn
+                        </ButtonSignInSignUpPages>
                     </form>
                     <span>Ou</span>
                     

@@ -1,16 +1,24 @@
 //import { ImgHTMLAttributes } from "react"
 
+type SecurityInfoType = {
+    email : string
+    password : string
+    username : string
+}
+
 export interface IAuthorizedUserInfo {
     user_id : number //that becomes from backend
+    biograPhy : string
+    sensivityInfo : SecurityInfoType
+    role : string
     name : string
     profile_img_url : string //that searches in database
     banner_img_url : string
-    role : string
 }
 
 export type LoginInfo = { 
-    username? : string, 
-    email? : string, 
+    username : string, 
+    email : string, 
     password : string 
 }
 

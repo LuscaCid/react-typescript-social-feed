@@ -4,21 +4,22 @@ import { ButtonSignInSignUpPages } from '../SignIn/SignInContainer'
 import { FaUserAstronaut } from "react-icons/fa";
 import { PiMoonStarsThin } from "react-icons/pi";
 import { HiOutlineMail } from "react-icons/hi";
-import { ChangeEvent, useReducer, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { Input } from '../../components/Input'
 import { useForm } from 'react-hook-form'
 import { conn } from '../../service/api'
 import {FaLock} from 'react-icons/fa'
 import * as zod from 'zod'
-
+import {Container, InputContainer} from '../../components/InputStyles'
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useEffect } from 'react';
 
 const zodModelDataFormRegister = zod.object({
-    emailRegister : zod.string().min(1),
-    passwordRegister :  zod
+    email : zod.string().min(1),
+    password :  zod
     .string()
     .min(5),
-    username : zod.string().min(1),
+    confirmPassword : zod.string().min(5),
+    username : zod.string().min(5),
 
 })
 type NewSessionCreateDataRegister = zod.infer<typeof zodModelDataFormRegister>
@@ -31,37 +32,43 @@ export const SignUp = () => {
             return state = action.payload.data
         }
     }*/
-    const [emailOrPhoneValue, setEmailOrPhoneValue] = useState<string>('')
-    const [password, setPassword] = useState<string>('')
     //const [username, dispatch] = useReducer(reducer, {age : 42})
 
     //dispatch({type : "change_value_of_Age", payload : {data : 4}})
 
     //console.log(username)
     const {register, handleSubmit, watch} = useForm<NewSessionCreateDataRegister>({
+        resolver : zodResolver(zodModelDataFormRegister),
         defaultValues : {
-            emailRegister : "", 
-            passwordRegister : "",
-            username : ""
+            email : "", 
+            password : "",
+            username : "",
+            confirmPassword : ""
         }
     })
     
     const navigate= useNavigate()
-    const handleChangeInputs = (e : ChangeEvent<HTMLInputElement>) => {
-        if(e.target.name == "emailorphone"){
-            setEmailOrPhoneValue(e.target.value)
-            console.log(emailOrPhoneValue, "valor do emailk")
-        } else {
-            setPassword(e.target.value)
-            console.log('valor do pass', password)
-        }
-        
-    }
     
     const handleCreateNewAccount = async (data: NewSessionCreateDataRegister) : Promise<void> => {
         await conn.post('/')
     }
     
+
+    const password = watch('password')
+
+    useEffect(() => {
+        let passwordHasSaveValues : boolean= false;
+
+        for(let i = 0; i < password.length; i++){
+            passwordHasSaveValues = password[i] == typeof 'number' ? true : false
+            if(passwordHasSaveValues)return 
+
+        }
+        const passwordHasUncommonValues = password.includes("@") || password.includes('!')
+        
+        
+    }, [password])
+
     return (
         <SignInContainer>
                 <aside>
@@ -71,37 +78,50 @@ export const SignUp = () => {
                 </aside>
                 <SignInAndSignUpSessions>
                     <form onSubmit={handleSubmit(handleCreateNewAccount)}>
-                        <Input 
-                            icon={FaUserAstronaut}
-                            onchange={handleChangeInputs} 
-                            id="username"
-                            placeholder = "Username"
-                            varianttypeformat = "primary"
-                            type = "text"
-                            {...register('username')} 
-                        />
-                        <Input 
-                            icon={HiOutlineMail}
-                            onchange={handleChangeInputs} 
-                            id="email"
-                            placeholder = "E-mail"
-                            varianttypeformat = "primary"
-                            type = "text"
-                            {...register('emailRegister')} 
-                        />
-                        <Input 
-                            icon={FaLock}
-                            onchange={handleChangeInputs}
-                            id="password"
-                            placeholder = "password"
-                            varianttypeformat = "primary"
-                            type = "password" 
-                            {...register('passwordRegister')}
+                    
+                        <Container>
+                            <HiOutlineMail size={15} />
+                            <InputContainer
+                                id='email'
+                                type='email'
+                                varianttypeformat='primary'
+                                placeholder = "e-mail"
+                                {...register('email')}
                             />
-                        
-                            <ButtonSignInSignUpPages type= "submit">
-                                Register
-                            </ButtonSignInSignUpPages>
+                        </Container>
+                        <Container>
+                            <FaUserAstronaut size={15}/>
+                        <InputContainer
+                                id='username'
+                                type='text'
+                                varianttypeformat='primary'
+                                placeholder = "username"
+                                {...register('username')}
+                            />
+                        </Container>
+                        <Container>
+                            <FaLock size= {15}/>
+                        <InputContainer
+                                id='password'
+                                type='text'
+                                varianttypeformat='primary'
+                                placeholder = "password"
+                                {...register('password')}
+                            />
+                        </Container>
+                        <Container>
+                        <   FaLock size= {15}/>
+                            <InputContainer
+                                id='password'
+                                varianttypeformat='primary'
+                                type='text'
+                                placeholder = "confirm Password"
+                                {...register('confirmPassword')}
+                            />
+                        </Container>
+                        <ButtonSignInSignUpPages type= "submit">
+                            Register
+                        </ButtonSignInSignUpPages>
                         
                     </form>
                     <span>Ou</span>

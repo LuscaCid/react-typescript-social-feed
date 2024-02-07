@@ -8,11 +8,12 @@ export type LabelContainerType = {
 }
 
 export interface OnlyInputProperties {
+    rest? : any
     icon? : any 
     name : string
     placeholder : string
     type : 'text' | 'password' | 'email' | "file"
     id : string
     varianttypeformat : variantType
-    onchange? : (e : ChangeEvent<HTMLInputElement>) => void 
+    //onchange? : (e : ChangeEvent<HTMLInputElement>) => void 
 }
