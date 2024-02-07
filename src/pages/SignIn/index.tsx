@@ -16,15 +16,14 @@ import { IAuthUserContext } from '../../interfaces/AuthInterface'
 const zodModelDataForm = zod.object({
     emailOrUsername : zod.string(),
     password :  zod.string(),
-    testInput : zod.string().min(1)
+    
 })
 
 type NewSessionCreateData = zod.infer<typeof zodModelDataForm>
 
 export const SignIn = () => {
 
-    const {signIn, user} : IAuthUserContext = useAuth()
-
+    const { updateUsername } = useAuth()
     const {register, handleSubmit, reset, watch} = useForm<NewSessionCreateData>({
         resolver : zodResolver(zodModelDataForm),
         defaultValues : {emailOrUsername : "", password : ""}
@@ -34,7 +33,7 @@ export const SignIn = () => {
     
     const handleSignIn = async (data: NewSessionCreateData) : Promise<void> => {
         console.log(data) //only for tests
-        signIn(data)
+        updateUsername('lucaségay')
         reset()
     }
     

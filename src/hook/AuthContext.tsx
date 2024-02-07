@@ -1,6 +1,6 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
 import { IAuthUserContext, IAuthorizedUserInfo } from "../interfaces/AuthInterface";
-import type {LoginInfo} from '../interfaces/AuthInterface'
+import type {Action, LoginInfo, State} from '../interfaces/AuthInterface'
 import react from 'react'
 import {SignInResponse} from '../interfaces/AuthInterface'
 
@@ -24,19 +24,10 @@ const user : IAuthorizedUserInfo = {//it becomes from signIn
     }
 }
 
-type State = {
-    user? : IAuthorizedUserInfo
-}
-type Action = 
-    {type : "loggon", payload : {username? : string, email? : string, password : string} }|
-    {type : "editUsername", payload : {newUsername : string}} |
-    {type : "editEmail", payload : {newEmail : string}} |
-    {type : "editPassword", payload : {newPassword : string, oldPassword: string}}
-
 const reducer = (state : State , action : Action)  : State => {
     switch(action.type){
         case 'editUsername' :
-            return {}
+            return { name : action.payload.newUsername }
            
         default :
             return state   
@@ -46,6 +37,13 @@ const reducer = (state : State , action : Action)  : State => {
 export const AuthContextProvider = ({children} : AuthContextProviderProps) => {
 
     const [state, dispatch] = useReducer(reducer, {})
+
+    const updateUsername = (newUsername : string) : void => {
+        console.log('funcao acessada')
+        dispatch({type : "editUsername", payload : {newUsername : newUsername}})
+        console.log(state.name)
+
+    }
 
     const signIn = (authObject: LoginInfo) : SignInResponse=> {
         console.log(authObject)
@@ -63,11 +61,17 @@ export const AuthContextProvider = ({children} : AuthContextProviderProps) => {
         return true
     }
 
+    useEffect(() => {
+        console.log(state.name)
+    }, [state])
+
     const data : IAuthUserContext = {
         user, //spread userObject in this data obj
+        state,
         signIn,
         signUp,
-        updateProfileImage
+        updateProfileImage,
+        updateUsername
     }
     return(
         <AuthContext.Provider value={data}>
