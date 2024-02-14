@@ -30,3 +30,7 @@ body, input, textarea, button {
     font-weight: 400;
     font-size: 1.6rem;
 }
+
+:focus{
+    outline: 1.5px solid var(--green-500);
+}

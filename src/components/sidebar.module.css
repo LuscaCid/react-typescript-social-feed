@@ -2,6 +2,9 @@
     background: var(--gray-800);
     border-radius: 0.7rem;
     overflow: hidden;
+    @media(max-width:44rem){
+        width: 100%;
+    }
 }
 .cover {
     width: 100%;

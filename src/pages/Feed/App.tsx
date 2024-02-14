@@ -1,12 +1,12 @@
 import { Post } from "../../components/Post"
-import { Header } from "../../components/header"
-
+import { CiCirclePlus } from "react-icons/ci";
 import { Sidebar } from "../../components/Sidebar"
 import styles from './app.module.css'
 import {useAppContext} from '../../hook/FeedContext' 
 import { IAuthorInfo } from "../../interfaces/posts-comments"
 import type { FakePosts } from "../../hook/FeedContext"
-
+import * as Dialog from "@radix-ui/react-dialog";
+import { NewPostModal } from "./NewPostModal";
 function App() {
   const data : FakePosts= useAppContext()
   //my data is posts that main user 
@@ -15,7 +15,22 @@ function App() {
     <>
       
         <div className={styles.wrapper}>
-          <Sidebar />
+          <nav className={styles.navigator}>
+            <div className={styles.create} >
+              <Dialog.Root>
+                <Dialog.Trigger asChild>
+                <button>
+                  <CiCirclePlus size={30}/> Criar
+                </button>
+                </Dialog.Trigger>
+                <NewPostModal />
+              </Dialog.Root>
+              
+                
+            </div>
+            <Sidebar />
+          </nav>
+          
           <main>
             {
               data.length > 0 ? data.map((post)=> {
