@@ -6,7 +6,6 @@ import { PiMoonStarsThin } from "react-icons/pi";
 import { HiOutlineMail } from "react-icons/hi";
 import { useNavigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
-import { conn } from '../../service/api'
 import {FaLock} from 'react-icons/fa'
 import * as zod from 'zod'
 import {Container, InputContainer} from '../../components/InputStyles'
@@ -50,7 +49,7 @@ export const SignUp = () => {
     const navigate= useNavigate()
     
     const handleCreateNewAccount = async (data: NewSessionCreateDataRegister) : Promise<void> => {
-        await conn.post('/')
+        console.log(data)
     }
     
 
@@ -64,9 +63,7 @@ export const SignUp = () => {
             if(passwordHasSaveValues)return 
 
         }
-        const passwordHasUncommonValues = password.includes("@") || password.includes('!')
-        
-        
+     
     }, [password])
 
     return (

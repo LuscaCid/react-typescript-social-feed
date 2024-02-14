@@ -1,7 +1,4 @@
 //import { ImgHTMLAttributes } from "react"
-
-import { ReducerAction } from "react"
-
 type SecurityInfoType = {
     email : string
     password : string

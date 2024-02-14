@@ -10,7 +10,6 @@ import { useForm } from 'react-hook-form'
 import {FaLock} from 'react-icons/fa'
 import * as zod from 'zod'
 import { useAuth } from '../../hook/AuthContext'
-import { IAuthUserContext } from '../../interfaces/AuthInterface'
 //import { conn } from '../../service/api'
 
 const zodModelDataForm = zod.object({
